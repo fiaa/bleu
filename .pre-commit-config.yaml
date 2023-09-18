@@ -1,15 +1,3 @@
-# bleu
-Le grand bleu
-
-## pre-commit
-You should use the virtualenv, then activate it to execute below commands.
-```
-$ poetry add pre-commit
-$ pre-commit install --install-hooks -t pre-commit -t prepare-commit-msg -t commit-msg -t pre-push
-```
-
-### .pre-commit-config.yaml
-```
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
@@ -28,4 +16,3 @@ repos:
     rev: 23.9.1
     hooks:
     -   id: black
-```
