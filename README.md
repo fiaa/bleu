@@ -1,6 +1,14 @@
 # bleu
 Le grand bleu
 
+## flake8
+I added a flake8 configure file
+```
+[flake8]
+import-order-style=pycharm
+max-line-length = 100
+```
+
 ## pre-commit
 You should use the virtualenv, then activate it to execute below commands.
 ```
