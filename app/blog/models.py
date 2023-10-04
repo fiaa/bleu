@@ -7,7 +7,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)  # 최초 생성 시간
     updated_at = models.DateTimeField(auto_now=True)  # 수정 시간
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
 
 
@@ -16,7 +16,7 @@ class Author(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)  # 최초 생성 시간
     updated_at = models.DateTimeField(auto_now=True)  # 수정 시간
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -25,7 +25,7 @@ class Category(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)  # 최초 생성 시간
     updated_at = models.DateTimeField(auto_now=True)  # 수정 시간
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -34,7 +34,7 @@ class Tag(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)  # 최초 생성 시간
     updated_at = models.DateTimeField(auto_now=True)  # 수정 시간
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -44,5 +44,5 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)  # 최초 생성 시간
     updated_at = models.DateTimeField(auto_now=True)  # 수정 시간
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.content
