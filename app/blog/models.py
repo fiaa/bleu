@@ -6,7 +6,12 @@ class Post(models.Model):
     content = models.TextField()
     author = models.ForeignKey(to="Author", on_delete=models.CASCADE)
     category = models.ForeignKey(to="Category", on_delete=models.CASCADE)
-    comments = models.ManyToManyField(to="Comment", related_name="posts")
+    comments = models.ManyToManyField(
+        to="Comment", related_name="posts", null=True, blank=True
+    )
+    posts = models.ManyToManyField(
+        to="Post", related_name="tags", null=True, blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -34,7 +39,6 @@ class Category(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=20)
-    posts = models.ManyToManyField(Post, related_name="tags")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
