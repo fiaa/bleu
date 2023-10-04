@@ -14,22 +14,22 @@ combine_as_imports = true
 include_trailing_comma = true
 line_length = 120
 
-[tool.mypy]
-plugins = ["mypy_django_plugin.main"]
-python_version = "3.11"
-strict = true
-ignore_missing_imports = true
+#[tool.mypy]
+#plugins = ["mypy_django_plugin.main"]
+#python_version = "3.11"
+#strict = true
+#ignore_missing_imports = true
 
-[[tool.mypy.overrides]]
-module = ["*.migrations.*", "manage"]
-ignore_errors = true
+#[[tool.mypy.overrides]]
+#module = ["*.migrations.*", "manage"]
+#ignore_errors = true
 
-[tool.django-stubs]
-django_version = "^4.2.5"
-django_apps = ["blog"]
-django_settings_module = "app.bleu.settings"
-ignore_missing_settings = true
-ignore_missing_model_attributes = true
+#[tool.django-stubs]
+#django_version = "^4.2.5"
+#django_apps = ["blog"]
+#django_settings_module = "app.bleu.settings"
+#ignore_missing_settings = true
+#ignore_missing_model_attributes = true
 ```
 
 ## pre-commit
@@ -59,18 +59,33 @@ repos:
     rev: 6.1.0
     hooks:
       - id: flake8
-        args: ["--config", "pyproject.toml"]
+        #args: ["--config", "pyproject.toml"]
   - repo: https://github.com/PyCQA/isort
     rev: 5.12.0
     hooks:
       - id: isort
-  - repo: local
-    hooks:
-      - id: mypy
-        name: mypy
-        entry: mypy
-        language: python
-        types: [python]
-        #additional_dependencies: ["django-stubs", "django-environ"]
-        args: ["--config-file", "pyproject.toml"]
+  #- repo: local
+  #  hooks:
+  #    - id: mypy
+  #      name: mypy
+  #      entry: mypy
+  #      language: python
+  #      types: [python]
+  #      #additional_dependencies: ["django-stubs", "django-environ"]
+  #      args: ["--config-file", "pyproject.toml"]
+```
+
+## blog
+### tables
+```
+
+          1:N                1:N
+Author <---------> Post <---------> Category
+                    |  \
+                    |   \
+               1:N  |    \ N:M
+                    |     \
+                    |      \
+                 Comment   Tag
+
 ```
