@@ -4,8 +4,11 @@ from django.db import models
 class Post(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)  # 최초 생성 시간
-    updated_at = models.DateTimeField(auto_now=True)  # 수정 시간
+    author = models.ForeignKey(to="Author", on_delete=models.CASCADE)
+    category = models.ForeignKey(to="Category", on_delete=models.CASCADE)
+    comments = models.ManyToManyField(to="Comment", related_name="posts")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.title
@@ -13,8 +16,8 @@ class Post(models.Model):
 
 class Author(models.Model):
     name = models.CharField(max_length=20)
-    created_at = models.DateTimeField(auto_now_add=True)  # 최초 생성 시간
-    updated_at = models.DateTimeField(auto_now=True)  # 수정 시간
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.name
@@ -22,8 +25,8 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=20)
-    created_at = models.DateTimeField(auto_now_add=True)  # 최초 생성 시간
-    updated_at = models.DateTimeField(auto_now=True)  # 수정 시간
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.name
@@ -31,18 +34,19 @@ class Category(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=20)
-    created_at = models.DateTimeField(auto_now_add=True)  # 최초 생성 시간
-    updated_at = models.DateTimeField(auto_now=True)  # 수정 시간
+    posts = models.ManyToManyField(Post, related_name="tags")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.name
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    author = models.CharField(max_length=20)
     content = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)  # 최초 생성 시간
-    updated_at = models.DateTimeField(auto_now=True)  # 수정 시간
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.content
