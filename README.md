@@ -79,7 +79,7 @@ repos:
 ### tables
 ```
 
-          1:N                1:N
+          1:N                N:M
 Author <---------> Post <---------> Category
                     |  \
                     |   \
