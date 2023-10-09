@@ -75,8 +75,9 @@ repos:
   #      args: ["--config-file", "pyproject.toml"]
 ```
 
-## blog
-### tables
+## Blog App
+
+### DB Tables
 ```
 
           1:N                N:M
@@ -88,4 +89,32 @@ Author <---------> Post <---------> Category
                     |      \
                  Comment   Tag
 
+```
+
+### APIs
+There are 5 APIs to manage blog posts.
+
+##### List Posts
+```
+GET /blog/posts/
+```
+
+##### Create Post
+```
+POST /blog/posts/add/
+```
+
+##### Retrieve Post
+```
+GET /blog/posts/<int:pk>/
+```
+
+##### Update Post
+```
+PUT /blog/posts/<int:pk>/edit/
+```
+
+##### Delete Post
+```
+DELETE /blog/posts/<int:pk>/delete/
 ```
