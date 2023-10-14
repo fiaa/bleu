@@ -1,0 +1,29 @@
+version: "3.7"
+
+networks:
+  bleu_network:
+    name: vms-api_default
+    external: true
+
+volumes:
+  bleu-db-data: {}
+
+services:
+  bleu_db:
+    image: "mysql:8.0-debian"
+    platform: linux/x86_64
+    container_name: bleu-db
+    restart: unless-stopped
+    volumes:
+      - bleu-db-data:/var/lib/mysql:rw
+      #- ./docker/mysql/conf.d:/etc/mysql/mysql.conf.d:ro
+    command: "mysqld"
+    environment:
+      MYSQL_DATABASE: "bleu"
+      MYSQL_USER: "bleu"
+      MYSQL_PASSWORD: "bleu_password"
+      MYSQL_ROOT_PASSWORD: "root_password"
+    ports:
+      - "3307:3306"
+    networks:
+      - bleu_network
