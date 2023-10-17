@@ -10,7 +10,6 @@ class PostList(ListView):
     context_object_name = "posts_list"
 
     def list(self, request):
-        queryset = self.get_queryset()
         return HttpResponse()
 
     def get_queryset(self):
@@ -21,10 +20,15 @@ class PostList(ListView):
         context = super().get_context_data(**kwargs)
         return context
 
+
 class PostDetail(DetailView):
     def get(self, request, pk):
-        return HttpResponse(f"Post Detail {pk}")
+        queryset = self.get_queryset(pk)
+        return HttpResponse(f"Post Detail: {queryset.content}")
 
+    def get_queryset(self, pk):
+        queryset = Post.objects.get(id=pk)
+        return queryset
 
 class PostNew(CreateView):
     def put(self, request):
