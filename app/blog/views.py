@@ -6,14 +6,20 @@ from .models import Author, Category, Comment, Post, PostCategory, PostTag, Tag
 
 
 class PostList(ListView):
+    template_name = "post_list.html"
+    context_object_name = "posts_list"
+
     def list(self, request):
         queryset = self.get_queryset()
-        return HttpResponse(queryset.objects.first().title)
+        return HttpResponse()
 
     def get_queryset(self):
-        queryset = Post.objects.all()
+        queryset = Post.objects.all().order_by("-created_at")
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 class PostDetail(DetailView):
     def get(self, request, pk):
