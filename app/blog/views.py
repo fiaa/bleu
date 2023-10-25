@@ -6,7 +6,7 @@ from .models import Author, Category, Comment, Post, PostCategory, PostTag, Tag
 
 
 class PostList(ListView):
-    template_name = "post_list.html"
+    template_name = "blog/post_list.html"
     context_object_name = "posts_list"
 
     def list(self, request):
