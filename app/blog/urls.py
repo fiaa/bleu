@@ -1,9 +1,10 @@
 from django.urls import path
+from django.views.generic import RedirectView
 
 from .views import PostDelete, PostDetail, PostEdit, PostList, PostNew
 
 urlpatterns = [
-    path("", PostList.as_view(), name="post_list"),
+    path("", RedirectView.as_view(url="posts/")),
     path("posts/", PostList.as_view(), name="post_list"),
     path("posts/add/", PostNew.as_view(), name="post_new"),
     path("posts/<int:pk>/", PostDetail.as_view(), name="post_detail"),
