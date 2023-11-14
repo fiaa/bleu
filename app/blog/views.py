@@ -8,13 +8,7 @@ from .models import Author, Category, Comment, Post, PostCategory, PostTag, Tag
 class PostList(ListView):
     template_name = "blog/post_list.html"
     context_object_name = "posts_list"
-
-    def list(self, request):
-        return HttpResponse()
-
-    def get_queryset(self):
-        queryset = Post.objects.all().order_by("-created_at")
-        return queryset
+    model = Post
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -24,15 +18,7 @@ class PostList(ListView):
 class PostDetail(DetailView):
     template_name = "blog/post_detail.html"
     context_object_name = "post_detail"
-
-    def get(self, request, pk):
-        queryset = self.get_queryset(pk)
-        # return HttpResponse(f"Post Detail: {queryset.content}")
-        return render(request, self.template_name, {"post_detail": queryset})
-
-    def get_queryset(self, pk):
-        queryset = Post.objects.get(id=pk)
-        return queryset
+    model = Post
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
