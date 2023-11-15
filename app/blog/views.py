@@ -10,19 +10,11 @@ class PostList(ListView):
     context_object_name = "posts_list"
     model = Post
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
 
 class PostDetail(DetailView):
     template_name = "blog/post_detail.html"
     context_object_name = "post_detail"
     model = Post
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
 
 
 class PostNew(CreateView):
