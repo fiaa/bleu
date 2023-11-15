@@ -1,13 +1,19 @@
 <h1>{{  post_detail.title }}</h1>
 <p>{{  post_detail.content }}</p>
 
-{% if post_detail.tag is not None %}
-    <p>Tag: {{ post_detail.tag.name }}</p>
-{% endif %}
+{%  if post_detail.tag %}
+    <h3>Tags</h3>
+    {% for t in tag %}
+        <li>{{ t.name }}</li>
+    {% endfor %}
+{%  endif %}
 
-{% if post_detail.category is not None %}
-    <p>Category: {{ post_detail.category.name }}</p>
-{% endif %}
+{% if post_detail.category %}
+    <h3>Categories</h3>
+    {% for c in category %}
+        <li>{{ c.name }}</li>
+    {% endfor %}
+{%  endif %}
 
 {% if post_detail.author is not None %}
     <h3>Author</h3>
@@ -28,3 +34,4 @@
         <p>{{ comment.content }}</p>
     {% endfor %}
 {% endif %}
+<a href="{% url 'post_list' %}">뒤로 가기</a>
