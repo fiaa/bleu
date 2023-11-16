@@ -1,7 +1,7 @@
-<h1>글 작성</h1>
+<h1>포스트 수정</h1>
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
-  <button type="submit">글 작성</button>
+  <button type="submit">포스트 수정</button>
 </form>
 <a href="{% url 'post_list' %}">리스트로 가기</a>

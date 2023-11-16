@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseNotFound
-from django.urls import reverse_lazy
+from django.urls import reverse
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
@@ -20,11 +20,15 @@ class PostDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        post = get_object_or_404(Post, pk=self.kwargs['pk'])
-        postag = PostTag.objects.filter(post=post).values_list("tag", flat=True)
-        postcategory = PostCategory.objects.filter(post=post).values_list("category", flat=True)
-        context['tag'] = Tag.objects.filter(id__in=postag).all()
-        context['category'] = Category.objects.filter(id__in=postcategory).all()
+
+        # post = get_object_or_404(Post, pk=self.kwargs['pk'])
+        post = self.object
+        postag = PostTag.objects.filter(post=post)
+        postcategory = PostCategory.objects.filter(post=post)
+
+        context['tag'] = [tag.tag for tag in postag]
+        context['category'] = [category.category for category in postcategory]
+
         return context
 
 
@@ -32,14 +36,21 @@ class PostNew(CreateView):
     template_name = "blog/post_new.html"
     model = Post
     form_class = PostNewForm
-    success_url = reverse_lazy("post_list")
 
+    def get_success_url(self):
+        return reverse("post_detail", kwargs={"pk": self.object.pk})
 
 class PostEdit(UpdateView):
-    def patch(self, request, pk):
-        return HttpResponse(f"Post Edit {pk}")
+    template_name = "blog/post_edit.html"
+    model = Post
+    form_class = PostNewForm
 
+    def get_success_url(self):
+        return reverse("post_detail", kwargs={"pk": self.object.pk})
 
 class PostDelete(DeleteView):
-    def delete(self, request, pk):
-        return HttpResponse(f"Post Delete {pk}")
+    template_name = "blog/post_delete.html"
+    model = Post
+
+    def get_success_url(self):
+        return reverse("post_list")
