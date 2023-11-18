@@ -1,10 +1,10 @@
 from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-from django.shortcuts import render, get_object_or_404
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
-from .models import Author, Category, Comment, Post, PostCategory, PostTag, Tag
 from .forms import PostNewForm
+from .models import Author, Category, Comment, Post, PostCategory, PostTag, Tag
 
 
 class PostList(ListView):
@@ -26,8 +26,8 @@ class PostDetail(DetailView):
         postag = PostTag.objects.filter(post=post)
         postcategory = PostCategory.objects.filter(post=post)
 
-        context['tag'] = [tag.tag for tag in postag]
-        context['category'] = [category.category for category in postcategory]
+        context["tag"] = [tag.tag for tag in postag]
+        context["category"] = [category.category for category in postcategory]
 
         return context
 
@@ -40,6 +40,7 @@ class PostNew(CreateView):
     def get_success_url(self):
         return reverse("post_detail", kwargs={"pk": self.object.pk})
 
+
 class PostEdit(UpdateView):
     template_name = "blog/post_edit.html"
     model = Post
@@ -47,6 +48,7 @@ class PostEdit(UpdateView):
 
     def get_success_url(self):
         return reverse("post_detail", kwargs={"pk": self.object.pk})
+
 
 class PostDelete(DeleteView):
     template_name = "blog/post_delete.html"
