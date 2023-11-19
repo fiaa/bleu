@@ -1,6 +1,14 @@
 # bleu
 Le grand bleu
 
+## Branchies
+- take-one
+  - By using Django's GenericView with Templates for the blog app
+- take-two
+  - By using DRF for the blog app as the api server
+- take-three
+  - TBD
+
 ## pre-commit
 You should use the virtualenv, then activate it to execute below commands.
 ```
