@@ -1,6 +1,12 @@
 # bleu
 Le grand bleu
 
+## Branchies
+- take-one
+  - By using Django's GenericView with Templates for the blog app
+- take-two
+  - TBD
+
 ## pre-commit
 You should use the virtualenv, then activate it to execute below commands.
 ```
