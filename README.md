@@ -5,6 +5,8 @@ Le grand bleu
 - take-one
   - By using Django's GenericView with Templates for the blog app
 - take-two
+  - By using DRF for the blog app as the api server
+- take-three
   - TBD
 
 ## pre-commit
