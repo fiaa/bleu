@@ -1,10 +1,8 @@
-from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from .forms import PostNewForm
-from .models import Author, Category, Comment, Post, PostCategory, PostTag, Tag
+from .models import Post, PostCategory, PostTag
 
 
 class PostList(ListView):

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Author, Category, Comment, Post, PostCategory, PostTag, Tag
+from .models import Category, Post, Tag
 
 
 class PostNewForm(forms.ModelForm):
