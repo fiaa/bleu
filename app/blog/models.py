@@ -1,7 +1,15 @@
 from django.db import models
 
 
-class Post(models.Model):
+class CommonMixin(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
+class Post(CommonMixin, models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     author = models.ForeignKey(to="Author", on_delete=models.CASCADE)
@@ -11,9 +19,6 @@ class Post(models.Model):
     category = models.ManyToManyField(to="Category", through="PostCategory", blank=True)
     tag = models.ManyToManyField(to="Tag", through="PostTag", blank=True)
 
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
     def __str__(self) -> str:
         return self.title
 
@@ -21,11 +26,8 @@ class Post(models.Model):
         db_table = "Post"
 
 
-class Author(models.Model):
+class Author(CommonMixin, models.Model):
     name = models.CharField(max_length=20, unique=True)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.name
@@ -34,11 +36,8 @@ class Author(models.Model):
         db_table = "Author"
 
 
-class Category(models.Model):
+class Category(CommonMixin, models.Model):
     name = models.CharField(max_length=20, unique=True)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.name
@@ -47,22 +46,16 @@ class Category(models.Model):
         db_table = "Category"
 
 
-class PostCategory(models.Model):
+class PostCategory(CommonMixin, models.Model):
     post = models.ForeignKey(to="Post", on_delete=models.CASCADE)
     category = models.ForeignKey(to="Category", on_delete=models.CASCADE)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = "PostCategory"
 
 
-class Tag(models.Model):
+class Tag(CommonMixin, models.Model):
     name = models.CharField(max_length=20, unique=True)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.name
@@ -71,23 +64,17 @@ class Tag(models.Model):
         db_table = "Tag"
 
 
-class PostTag(models.Model):
+class PostTag(CommonMixin, models.Model):
     post = models.ForeignKey(to="Post", on_delete=models.CASCADE)
     tag = models.ForeignKey(to="Tag", on_delete=models.CASCADE)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         db_table = "PostTag"
 
 
-class Comment(models.Model):
+class Comment(CommonMixin, models.Model):
     author = models.CharField(max_length=20)
     content = models.TextField()
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.content
