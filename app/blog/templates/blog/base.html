@@ -1,0 +1,17 @@
+{%  load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bleu</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% block style %}
+    {% endblock %}
+</head>
+<body>
+    {% bootstrap_messages %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

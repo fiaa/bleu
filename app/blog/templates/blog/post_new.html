@@ -1,7 +1,12 @@
+{% extends "blog/base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
 <h1>글 작성</h1>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">글 작성</button>
+<form method="post", class="form">
+{% csrf_token %}
+{# {{ form.as_p }} #}
+{%  bootstrap_form form %}
+<button type="submit">글 작성</button>
 </form>
 <a href="{% url 'post_list' %}">리스트로 가기</a>
+{% endblock %}
