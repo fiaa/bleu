@@ -1,10 +1,12 @@
 {% extends "blog/base.html" %}
 {% block content %}
-    <h1>포스트 수정</h1>
-    <form method="post">
+    <h1>글 수정</h1>
+    <form method="post" , action="{% url 'post_new' %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">포스트 수정</button>
+        <button type="submit">글 수정</button>
+        <a href="{% url 'post_detail' pk=post.pk %}">
+            <button type="button">취소</button>
+        </a>
     </form>
-    <a href="{% url 'post_list' %}">리스트로 가기</a>
 {% endblock %}

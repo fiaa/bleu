@@ -5,6 +5,8 @@
     <form method="post">
         {% csrf_token %}
         <button type="submit">예, 삭제합니다</button>
+        <a href="{% url 'post_detail' pk=post.pk %}">
+            <button type="button">취소</button>
+        </a>
     </form>
-    <a href="{% url 'post_list' %}">취소</a>
 {% endblock %}

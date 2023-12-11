@@ -36,7 +36,13 @@
             <p>{{ comment.content }}</p>
         {% endfor %}
     {% endif %}
-    <a href="{% url 'post_edit' pk=post_detail.pk %}">수정 하기</a>
-    <a href="{% url 'post_delete' pk=post_detail.pk %}">삭제 하기</a>
-    <a href="{% url 'post_list' %}">리스트로 가기</a>
+    <a href="{% url 'post_edit' pk=post_detail.pk %}">
+        <button type="button">수정 하기</button>
+    </a>
+    <a href="{% url 'post_delete' pk=post_detail.pk %}">
+        <button type="button">삭제 하기</button>
+    </a>
+    <a href="{% url 'post_list' %}">
+        <button type="button">리스트로 가기</button>
+    </a>
 {% endblock %}
