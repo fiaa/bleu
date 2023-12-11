@@ -1,10 +1,24 @@
 {% extends "blog/base.html" %}
-{% load django_bootstrap5 %}
 {% block content %}
+<h1>블로그 글 목록</h1>
+<table>
+<tr>
+    <td>번호</td>
+    <td>제목</td>
+    <td>날짜</td>
+</tr>
 {% for post in posts_list %}
-    <li><a href="{{ post.id }}">{{ post.title }}</a></li>
+    <tr>
+    <td>{{ post.id }}</td>
+        <td><a href="{{ post.id }}">{{ post.title }}</a></td>
+    <td>{{ post.updated_at|date:"Y년 m월 d일 h:i:s A" }}</td>
+    </tr>
 {% endfor %}
-
 <br>
-<a href="{% url 'post_new' %}">새로운 글 추가하기</a>
+<tr>
+    <td><a href="{% url 'post_new' %}">새로운 글 추가하기</a></td>
+    <td></td>
+    <td></td>
+</tr>
+</table>
 {% endblock %}
