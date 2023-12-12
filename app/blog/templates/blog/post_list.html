@@ -1,7 +1,8 @@
 {% extends "blog/base.html" %}
 {% block content %}
+    <div class="content">
     <h1>블로그 글 목록</h1>
-    <table>
+    <table class="content-table">
         <tr>
             <td>번호</td>
             <td>제목</td>
@@ -20,4 +21,5 @@
     <a href="{% url 'post_new' %}">
         <button type="button">새로운 글 추가하기</button>
     </a>
+    </div>
 {% endblock %}

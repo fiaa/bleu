@@ -1,5 +1,6 @@
 {% extends "blog/base.html" %}
 {% block content %}
+    <div class="content">
     <h1>글 작성</h1>
     <form method="post" , action="{% url 'post_new' %}">
         {% csrf_token %}
@@ -9,4 +10,5 @@
             <button type="button">취소</button>
         </a>
     </form>
+    </div>
 {% endblock %}
