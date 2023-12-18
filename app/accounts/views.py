@@ -1,15 +1,15 @@
 from django.contrib.auth.views import LoginView, LogoutView
-from django.urls import reverse
 
 
 class LoginView(LoginView):
     template_name = "accounts/login.html"
+    next_page = "blog:post_list"
     redirect_authenticated_user = True
 
 
 class LogoutView(LogoutView):
     template_name = "accounts/logout.html"
-    next_page = reverse("login")
+    next_page = "blog:post_list"
 
 
 # class JoinView(CreateView):

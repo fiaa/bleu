@@ -36,7 +36,7 @@ class PostNew(CreateView):
     form_class = PostNewForm
 
     def get_success_url(self):
-        return reverse("post_detail", kwargs={"pk": self.object.pk})
+        return reverse("blog:post_detail", kwargs={"pk": self.object.pk})
 
 
 class PostEdit(UpdateView):
@@ -45,7 +45,7 @@ class PostEdit(UpdateView):
     form_class = PostNewForm
 
     def get_success_url(self):
-        return reverse("post_detail", kwargs={"pk": self.object.pk})
+        return reverse("blog:post_detail", kwargs={"pk": self.object.pk})
 
 
 class PostDelete(DeleteView):
@@ -53,4 +53,4 @@ class PostDelete(DeleteView):
     model = Post
 
     def get_success_url(self):
-        return reverse("post_list")
+        return reverse("blog:post_list")

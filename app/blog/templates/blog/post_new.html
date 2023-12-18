@@ -2,11 +2,11 @@
 {% block content %}
     <div class="content">
     <h1>글 작성</h1>
-    <form method="post" , action="{% url 'post_new' %}">
+    <form method="post" , action="{% url 'blog:post_new' %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">글 작성</button>
-        <a href="{% url 'post_list' %}">
+        <a href="{% url 'blog:post_list' %}">
             <button type="button">취소</button>
         </a>
     </form>

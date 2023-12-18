@@ -37,13 +37,13 @@
             <p>{{ comment.content }}</p>
         {% endfor %}
     {% endif %}
-    <a href="{% url 'post_edit' pk=post_detail.pk %}">
+    <a href="{% url 'blog:post_edit' pk=post_detail.pk %}">
         <button type="button">수정 하기</button>
     </a>
-    <a href="{% url 'post_delete' pk=post_detail.pk %}">
+    <a href="{% url 'blog:post_delete' pk=post_detail.pk %}">
         <button type="button">삭제 하기</button>
     </a>
-    <a href="{% url 'post_list' %}">
+    <a href="{% url 'blog:post_list' %}">
         <button type="button">리스트로 가기</button>
     </a>
     </div>

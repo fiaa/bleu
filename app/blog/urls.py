@@ -3,6 +3,8 @@ from django.views.generic import RedirectView
 
 from .views import PostDelete, PostDetail, PostEdit, PostList, PostNew
 
+app_name = "blog"
+
 urlpatterns = [
     path("", RedirectView.as_view(url="posts/")),
     path("posts/", PostList.as_view(), name="post_list"),
