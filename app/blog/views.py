@@ -1,8 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from .forms import PostNewForm
 from .models import Post, PostCategory, PostTag
+
+LOGIN_URL = "/accounts/login/"
 
 
 class PostList(ListView):
@@ -30,7 +33,9 @@ class PostDetail(DetailView):
         return context
 
 
-class PostNew(CreateView):
+class PostNew(LoginRequiredMixin, CreateView):
+    login_url = LOGIN_URL
+
     template_name = "blog/post_new.html"
     model = Post
     form_class = PostNewForm
@@ -39,7 +44,9 @@ class PostNew(CreateView):
         return reverse("blog:post_detail", kwargs={"pk": self.object.pk})
 
 
-class PostEdit(UpdateView):
+class PostEdit(LoginRequiredMixin, UpdateView):
+    login_url = LOGIN_URL
+
     template_name = "blog/post_edit.html"
     model = Post
     form_class = PostNewForm
@@ -48,7 +55,9 @@ class PostEdit(UpdateView):
         return reverse("blog:post_detail", kwargs={"pk": self.object.pk})
 
 
-class PostDelete(DeleteView):
+class PostDelete(LoginRequiredMixin, DeleteView):
+    login_url = LOGIN_URL
+
     template_name = "blog/post_delete.html"
     model = Post
 
